@@ -1,4 +1,5 @@
 package uaslp.objetos.list.List.LinkedList;
+import uaslp.objetos.list.List.Iterator;
 import uaslp.objetos.list.List.List;
 
 public class LinkedList implements List {
@@ -134,4 +135,36 @@ public class LinkedList implements List {
     public LinkedListIterator getIterator(){
         return new LinkedListIterator(head);
     }
+
+    public static class Node {
+        Node next, previous;
+        private String data;
+
+        public Node(String data) {
+            next = previous = null;
+            this.data = data;
+        }
+        public String GetDataNode() {return data;}
+        public void setData(String data) {
+            this.data = data;
+        }
+    }
+
+    public static class LinkedListIterator implements Iterator {
+        Node node;
+
+        public LinkedListIterator(Node node){
+            this.node = node;
+        }
+        public boolean hasNext(){
+            return node != null;
+        }
+        public String next(){
+            String data = node.GetDataNode();
+            node = node.next;
+            return data;
+        }
+
+    }
+
 }
