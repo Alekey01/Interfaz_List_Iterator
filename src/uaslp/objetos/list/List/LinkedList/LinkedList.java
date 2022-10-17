@@ -133,7 +133,7 @@ public class LinkedList implements List {
         return size;
     }
     public LinkedListIterator getIterator(){
-        return new LinkedListIterator(head);
+        return new LinkedListIterator();
     }
 
     public static class Node {
@@ -150,11 +150,11 @@ public class LinkedList implements List {
         }
     }
 
-    public static class LinkedListIterator implements Iterator {
+    public class LinkedListIterator implements Iterator {
         Node node;
 
-        public LinkedListIterator(Node node){
-            this.node = node;
+        public LinkedListIterator(){
+            this.node = head;
         }
         public boolean hasNext(){
             return node != null;
