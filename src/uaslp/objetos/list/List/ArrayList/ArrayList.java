@@ -1,5 +1,6 @@
 package uaslp.objetos.list.List.ArrayList;
 
+import uaslp.objetos.list.List.Iterator;
 import uaslp.objetos.list.List.List;
 
 public class ArrayList implements List {
@@ -79,13 +80,24 @@ public class ArrayList implements List {
     public int getSize() {
         return size;
     }
+
     public void increaseArraySize(){
         String[] newArray = new String[this.data.length * 2];
 
         System.arraycopy(data,0,newArray,0,data.length);
         data= newArray;
     }
-    public ArrayListIterator getIterator(){
-        return new ArrayListIterator(this);
+    public Iterator getIterator(){
+        return new Iterator(){
+            private int currentIndex=0;
+
+            public boolean hasNext(){
+                return currentIndex > size;
+            }
+            public String next(){
+                return data[currentIndex++];
+            }
+        };
     }
+
 }
